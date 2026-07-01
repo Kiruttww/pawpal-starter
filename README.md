@@ -44,14 +44,15 @@ pip install -r requirements.txt
 
 ## 🖥️ Sample Output
 
-Paste a sample of your app's CLI or Streamlit output here so a reader can see what a generated plan looks like:
-
 ```
-# e.g.:
-# Daily plan for Biscuit (Golden Retriever):
-#   08:00 — Morning walk (30 min) [priority: high]
-#   09:00 — Feeding (10 min) [priority: high]
-#   ...
+08:00-09:00
+  • Morning walk [HIGH, 30 min] — Rex (dog)
+  • Feed breakfast [HIGH, 15 min] — Milo (cat)
+  • Litter cleanup [LOW, 10 min] — Milo (cat)
+  (5 min free)
+18:00-19:00
+  • Evening walk [MEDIUM, 30 min] — Rex (dog)
+  (30 min free)
 ```
 
 ## 🧪 Testing PawPal+
@@ -72,14 +73,16 @@ Sample test output:
 
 ## 📐 Smarter Scheduling
 
-> Fill in once you've implemented scheduling logic.
+The scheduler reasons about two core constraints — **time capacity** and **priority** — and layers sorting, filtering, conflict detection, and recurrence on top.
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_by_time()` | Sorts all tasks by `scheduled_start` (as an `"HH:MM"` key); unscheduled tasks sort last via a `"99:99"` sentinel. |
+| Priority-first placement | `Scheduler.auto_assign()` | Greedy first-fit: sorts pending tasks `HIGH → MEDIUM → LOW`, then drops each into the first window with remaining capacity. |
+| Filtering | `Scheduler.filter_tasks()`, `Scheduler.pending_tasks()` | `filter_tasks` narrows by completion status and/or pet name; `pending_tasks` skips tasks that are completed or already scheduled. Placement stops for a task when no window has capacity. |
+| Conflict handling | `Scheduler.detect_conflicts()` | Sorts occurrences by start time and sweeps once, reporting any `[start, end)` intervals that overlap (back-to-back tasks don't conflict). Detects, does not prevent. |
+| Recurring tasks | `Scheduler.complete_task()`, `Scheduler._next_occurrence()` | On completion, spawns the next occurrence based on `Task.frequency` (ONCE / DAILY / WEEKLY / MONTHLY); MONTHLY clamps to the last valid day of the month. |
+| Rescheduling | `Scheduler.reschedule()` | Drops all incomplete assignments and re-runs `auto_assign()` from scratch. |
 
 ## 📸 Demo Walkthrough
 

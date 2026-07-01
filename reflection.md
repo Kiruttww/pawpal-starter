@@ -10,13 +10,19 @@ A user should be able to mark complete a task the user has completed.
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+My initial design has 5 classes: an Owner who has many Pets and many AvailabilityWindows, each Pet requiring a list of Tasks, and a Scheduler that manages one Owner to fit tasks into available windows. Tasks carry a duration, plus Frequency and Priority enums, while AvailabilityWindows track day, time range, and capacity.
 - What classes did you include, and what responsibilities did you assign to each?
+owner - the main user, owns the pets and adds pets and availability
+pet - owner by the main user, adds a task and stores list of tasks
+task - describes what action the owner needs to complete
+scheduler - looks for avaiability according to what the owner shares
 
 **b. Design changes**
 
 - Did your design change during implementation?
+Yes, it did.
 - If yes, describe at least one change and why you made it.
-
+Added a scheduled task class that connects my Task and availability window. I made the change because I realized that for tasks to have a frequency, I needed to have multiple instances of the same task for different times in the future. Scheduled task accomplished this.
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
@@ -24,7 +30,10 @@ A user should be able to mark complete a task the user has completed.
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+It considers priority above everything else and then the time. It basically goes where the last task was and sees if the new task can fit. This means it's greedy by nature and isn't super smart.
+
 - How did you decide which constraints mattered most?
+I started from the smallest iteration that would be useful for a pet owner. What would an owner need to know and what would make their lives easier. An owner might prioritize tasks and care whether they fit in his schedule in general rather than strict efficiency, so I didn't make it smart.
 
 **b. Tradeoffs**
 
