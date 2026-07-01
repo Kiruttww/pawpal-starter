@@ -1,0 +1,64 @@
+classDiagram
+    class Owner {
+        +String name
+        +List~Pet~ pets
+        +List~AvailabilityWindow~ availability
+        +addPet(Pet)
+        +addAvailability(AvailabilityWindow)
+    }
+
+    class Pet {
+        +String name
+        +String type
+        +Owner owner
+        +List~Task~ tasks
+        +addTask(Task)
+    }
+
+    class Task {
+        +String description
+        +int durationMinutes
+        +Frequency frequency
+        +Priority priority
+        +DateTime scheduledStart
+        +bool completed
+        +markComplete()
+    }
+
+    class AvailabilityWindow {
+        +DayOfWeek day
+        +Time start
+        +Time end
+        +int capacityMinutes
+        +remainingMinutes() int
+    }
+
+    class Scheduler {
+        +Owner owner
+        +autoAssign() List~Task~
+        +pendingTasks() List~Task~
+        +reschedule()
+    }
+
+    class Frequency {
+        <<enumeration>>
+        ONCE
+        DAILY
+        WEEKLY
+        MONTHLY
+    }
+
+    class Priority {
+        <<enumeration>>
+        LOW
+        MEDIUM
+        HIGH
+    }
+
+    Owner "1" o-- "*" Pet : owns
+    Owner "1" o-- "*" AvailabilityWindow : has
+    Pet "1" *-- "*" Task : requires
+    Pet "*" --> "1" Owner : belongs to
+    Scheduler "1" --> "1" Owner : manages
+    Task --> Frequency
+    Task --> Priority

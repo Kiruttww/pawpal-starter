@@ -2,6 +2,11 @@
 
 ## 1. System Design
 
+** Core Actions **
+A user should be able to add one or more pets.
+A user should be able to see today's task.
+A user should be able to mark complete a task the user has completed.
+
 **a. Initial design**
 
 - Briefly describe your initial UML design.
