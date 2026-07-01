@@ -47,12 +47,16 @@ I started from the smallest iteration that would be useful for a pet owner. What
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+I used it for design and brianstorming. Then I made fixes to it's intial thoughts and once we were on the same page worked on the structure. Refactoring was easier because we already established things.
 - What kinds of prompts or questions were most helpful?
+Explain why this would be your first choice and ask for when it's reccoendation would backfire.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+The AI implemented this to work for more than one owner, each having multiple pets and schedulers.
 - How did you evaluate or verify what the AI suggested?
+I first made it break down for me and I followed up with clarifying questions.
 
 ---
 

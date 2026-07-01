@@ -68,12 +68,20 @@ pytest --cov
 Sample test output:
 
 ```
-# Paste your pytest output here
+% python3 -m pytest
+======================================================================== test session starts ========================================================================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0
+rootdir: /Users/kirubeltefera/Desktop/Codepath AI 2026/pawpal-starter
+collected 15 items                                                                                                                                                  
+
+tests/test_pawpal.py ...............                                                                                                                          [100%]
+
+======================================================================== 15 passed in 0.01s =========================================================================
 ```
+I am about 3.5-4 for confidence in the system right now.
 
 ## 📐 Smarter Scheduling
 
-The scheduler reasons about two core constraints — **time capacity** and **priority** — and layers sorting, filtering, conflict detection, and recurrence on top.
 
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
