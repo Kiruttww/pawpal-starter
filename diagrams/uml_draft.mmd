@@ -30,7 +30,16 @@ classDiagram
         +Time start
         +Time end
         +int capacityMinutes
+        +List~ScheduledTask~ scheduled
         +remainingMinutes() int
+    }
+
+    class ScheduledTask {
+        +Task task
+        +AvailabilityWindow window
+        +DateTime date
+        +bool completed
+        +markComplete()
     }
 
     class Scheduler {
@@ -55,10 +64,24 @@ classDiagram
         HIGH
     }
 
+    class DayOfWeek {
+        <<enumeration>>
+        MONDAY
+        TUESDAY
+        WEDNESDAY
+        THURSDAY
+        FRIDAY
+        SATURDAY
+        SUNDAY
+    }
+
     Owner "1" o-- "*" Pet : owns
     Owner "1" o-- "*" AvailabilityWindow : has
     Pet "1" *-- "*" Task : requires
     Pet "*" --> "1" Owner : belongs to
     Scheduler "1" --> "1" Owner : manages
+    ScheduledTask "*" --> "1" Task : instance of
+    AvailabilityWindow "1" o-- "*" ScheduledTask : scheduled
     Task --> Frequency
     Task --> Priority
+    AvailabilityWindow --> DayOfWeek

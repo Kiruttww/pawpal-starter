@@ -47,8 +47,22 @@ class AvailabilityWindow:
     start: time
     end: time
     capacity_minutes: int
+    scheduled: list["ScheduledTask"] = field(default_factory=list)
 
     def remaining_minutes(self) -> int:
+        ...
+
+
+@dataclass
+class ScheduledTask:
+    """A concrete occurrence of a Task assigned to a window on a date."""
+
+    task: Task
+    window: AvailabilityWindow
+    date: datetime
+    completed: bool = False
+
+    def mark_complete(self) -> None:
         ...
 
 
