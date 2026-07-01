@@ -38,7 +38,9 @@ I started from the smallest iteration that would be useful for a pet owner. What
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+It doesn't schedule tasks in a smart way. If a different organization betwen tasks would let more tasks be involved, it wouldn't check it.
 - Why is that tradeoff reasonable for this scenario?
+This is meant as a system for one user, which may or may not have too many pets. As a first iteration to just make a pet owner's life a bit easier, it didn't seem very necessary.
 
 ---
 
@@ -70,6 +72,7 @@ I first made it break down for me and I followed up with clarifying questions.
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+3.8 - 4.0
 - What edge cases would you test next if you had more time?
 
 ---
@@ -79,11 +82,14 @@ I first made it break down for me and I followed up with clarifying questions.
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+The level of detail me and the AI went to to make sure this would be auseful app for a pet owner.
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+Take more control oevr the project from the AI.
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+It is always better to start small and increment on it. And always commit!

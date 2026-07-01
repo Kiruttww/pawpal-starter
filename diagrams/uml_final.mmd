@@ -32,6 +32,7 @@ classDiagram
         +int capacityMinutes
         +List~ScheduledTask~ scheduled
         +remainingMinutes() int
+        +canFit(Task) bool
     }
 
     class ScheduledTask {
@@ -39,6 +40,7 @@ classDiagram
         +AvailabilityWindow window
         +DateTime date
         +bool completed
+        +end() DateTime
         +markComplete()
     }
 
@@ -47,6 +49,10 @@ classDiagram
         +autoAssign() List~Task~
         +pendingTasks() List~Task~
         +reschedule()
+        +filterTasks(bool, String) List~Task~
+        +sortByTime() List~Task~
+        +completeTask(Task) Task
+        +detectConflicts() List~String~
     }
 
     class Frequency {
